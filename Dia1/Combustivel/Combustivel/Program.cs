@@ -13,7 +13,7 @@ namespace Combustivel
         {
               return System.Convert.ToInt32(p);
         }
-        public static void Main(string[] args)
+        /*public static void Main(string[] args)
         {
             //Lendo as informações do arquivo
             StreamReader leitor = new StreamReader("input.txt");
@@ -55,6 +55,6 @@ namespace Combustivel
 
             Console.WriteLine("\nA soma final é: " + soma);
             Console.ReadLine();
-        }
+        }*/
     }
 }
