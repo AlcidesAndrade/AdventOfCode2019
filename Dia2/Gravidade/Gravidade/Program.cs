@@ -43,7 +43,7 @@ namespace Gravidade
             }
             Console.WriteLine("Oia, o tamanho da tua lista é: " + cortada.Length);
             leitor_var.Close();
-            return cortada;
+            return cortada; 
         }
 
         public static void escritor(string mensagem)
@@ -75,10 +75,9 @@ namespace Gravidade
             }
             return saida;
         }
-        public static void andor(int [] valores)
+        public static int[] andor(int [] valores)
         {
-            valores[1] = 12;
-            valores[2] = 2;
+            
             for (int i = 0; i < valores.Length; i+=4)
             {
                 int j,k,m = 0;
@@ -87,24 +86,60 @@ namespace Gravidade
                     j = valores[i + 3];
                     k = valores[i + 1];
                     m = valores[i + 2];
-                    valores[j] = valores[k] + valores[m];
+                    try
+                    {
+                        valores[j] = valores[k] + valores[m];
+                    }
+                    catch(Exception e)
+                    {
+                        return valores;
+                    }
                 }
                 else if(valores[i] == 2)
                 {
                     j = valores[i + 3];
                     k = valores[i + 1];
                     m = valores[i + 2];
-                    valores[j] = valores[k] * valores[m];
+                    try
+                    {
+                        valores[j] = valores[k] * valores[m];
+                    }
+                    catch(Exception e)
+                    {
+                        return valores;
+                    }
                 }
                 else if(valores[i] == 99)
                 {
                     Console.WriteLine("PAREI!");
-                    Console.WriteLine("O valor na posição zero foi esse aqaui ó: " + valores[0]);
-                    return;
+                    Console.WriteLine("O valor na posição zero foi esse aqui ó: " + valores[0]);
+                    Console.WriteLine("Valor de 1: " + valores[1] + "Valor de 2: " + valores[2]);
+                    return valores;
                 }
                 else
                 {
                     Console.WriteLine("Sei o que é isso não! Não me enche porra!");
+                }
+            }
+            return valores;
+        }
+
+        public static void testandor(int [] aux)
+        {
+            int [] valores = aux;
+            for (int a = 1; a < 99; a++)
+            {
+                for (int b = 1; b < 99; b++)
+                {
+                    valores[1] = a;
+                    valores[2] = b;
+                    andor(valores);
+                    if(valores[0] == 19690720)
+                    {
+                        Console.WriteLine("a: " + a + " \nb:" + b);
+                        a = 100;
+                    }
+                    valores = aux;
                 }
             }
         }
@@ -114,7 +149,8 @@ namespace Gravidade
             //escritor("input.txt");
             string [] entrada = leitor("input.txt");
             int[] aux = vStringtovInt(entrada);
-            andor(aux);
+            //andor(aux);
+            testandor(aux);
             //for (int i = 0; i < aux.Length; i++)
             //{
             //    Console.WriteLine(aux[i]);
