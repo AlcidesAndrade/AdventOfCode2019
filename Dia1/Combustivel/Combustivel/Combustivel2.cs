@@ -59,12 +59,15 @@ namespace Combustivel
 
         public static int operaRecursivo(int elemento)
         {
-            if (elemento <= 0)
+            elemento = elemento / 3 - 2;
+            if (elemento > 0)
+            {
+                return elemento + operaRecursivo(elemento);
+            }
+            else
             {
                 return 0;
             }
-            elemento = elemento / 3 - 2;
-            return elemento + operaRecursivo(elemento);
         }
 
         public static void Main(string[] args)
