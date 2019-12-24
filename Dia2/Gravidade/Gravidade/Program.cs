@@ -75,9 +75,8 @@ namespace Gravidade
             }
             return saida;
         }
-        public static int[] andor(int [] valores)
+        public static int[] andor(in int [] valores)
         {
-            
             for (int i = 0; i < valores.Length; i+=4)
             {
                 int j,k,m = 0;
@@ -90,8 +89,9 @@ namespace Gravidade
                     {
                         valores[j] = valores[k] + valores[m];
                     }
-                    catch(Exception e)
+                    catch(IndexOutOfRangeException e)
                     {
+                        System.Threading.Thread.Sleep(10000);
                         return valores;
                     }
                 }
@@ -104,8 +104,9 @@ namespace Gravidade
                     {
                         valores[j] = valores[k] * valores[m];
                     }
-                    catch(Exception e)
+                    catch(IndexOutOfRangeException e)
                     {
+                        System.Threading.Thread.Sleep(10000);
                         return valores;
                     }
                 }
@@ -113,7 +114,7 @@ namespace Gravidade
                 {
                     Console.WriteLine("PAREI!");
                     Console.WriteLine("O valor na posição zero foi esse aqui ó: " + valores[0]);
-                    Console.WriteLine("Valor de 1: " + valores[1] + "Valor de 2: " + valores[2]);
+                    Console.WriteLine("Valor de 1: " + valores[1] + "\nValor de 2: " + valores[2]);
                     return valores;
                 }
                 else
@@ -124,8 +125,13 @@ namespace Gravidade
             return valores;
         }
 
-        public static void testandor(int [] aux)
+        public static void testandor(in int [] aux)
         {
+            if (aux == null)
+            {
+                throw new ArgumentNullException(nameof(aux));
+            }
+
             int [] valores = aux;
             for (int a = 1; a < 99; a++)
             {
@@ -133,13 +139,26 @@ namespace Gravidade
                 {
                     valores[1] = a;
                     valores[2] = b;
-                    andor(valores);
-                    if(valores[0] == 19690720)
+                    //Console.WriteLine("\n------------------------\nAntes da execução:");
+                    //for (int i = 0; i < valores.Length; i++)
+                    //{
+                    //    Console.WriteLine(valores[i]);
+                    //}
+                    int [] cap = andor(valores);
+                    //Console.WriteLine("\n------------------------\nDepois da execução:");
+                    //for (int i = 0; i < valores.Length; i++)
+                    //{
+                    //    Console.WriteLine(valores[i]);
+                    //}
+                    if (valores[0] == 19690720)
                     {
                         Console.WriteLine("a: " + a + " \nb:" + b);
                         a = 100;
                     }
-                    valores = aux;
+                    else
+                    {
+                        valores = aux;
+                    }
                 }
             }
         }
