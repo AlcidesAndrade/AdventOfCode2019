@@ -36,12 +36,12 @@ namespace Gravidade
             String aux = leitor_var.ReadLine();
             string [] cortada = cortaString(aux);
             //Salvando numa lista
-            for (int i = 0; i < cortada.Length; i++)
-            {
-                Console.WriteLine("\nElemento " + i + " valor: " + cortada[i]);
+            //for (int i = 0; i < cortada.Length; i++)
+            //{
+                //Console.WriteLine("\nElemento " + i + " valor: " + cortada[i]);
                 //linhas.Add(cortada[i]);
-            }
-            Console.WriteLine("Oia, o tamanho da tua lista é: " + cortada.Length);
+            //}
+            //Console.WriteLine("Oia, o tamanho da tua lista é: " + cortada.Length);
             leitor_var.Close();
             return cortada; 
         }
@@ -75,8 +75,10 @@ namespace Gravidade
             }
             return saida;
         }
-        public static int[] andor(in int [] valores)
+        public static int[] andor(in int [] valores, int x, int y)
         {
+            valores[1] = x;
+            valores[2] = y;
             for (int i = 0; i < valores.Length; i+=4)
             {
                 int j,k,m = 0;
@@ -91,7 +93,7 @@ namespace Gravidade
                     }
                     catch(IndexOutOfRangeException e)
                     {
-                        System.Threading.Thread.Sleep(10000);
+                        System.Threading.Thread.Sleep(500);
                         return valores;
                     }
                 }
@@ -106,13 +108,13 @@ namespace Gravidade
                     }
                     catch(IndexOutOfRangeException e)
                     {
-                        System.Threading.Thread.Sleep(10000);
+                        System.Threading.Thread.Sleep(500);
                         return valores;
                     }
                 }
                 else if(valores[i] == 99)
                 {
-                    Console.WriteLine("PAREI!");
+                    Console.WriteLine("Encontrado codigo de encerramento.");
                     Console.WriteLine("O valor na posição zero foi esse aqui ó: " + valores[0]);
                     Console.WriteLine("Valor de 1: " + valores[1] + "\nValor de 2: " + valores[2]);
                     return valores;
@@ -120,6 +122,8 @@ namespace Gravidade
                 else
                 {
                     Console.WriteLine("Sei o que é isso não! Não me enche porra!");
+                    Console.WriteLine("O valor recebido foi: " + valores[i]);
+                    Console.WriteLine("Posição: " + i);
                 }
             }
             return valores;
@@ -131,26 +135,14 @@ namespace Gravidade
             {
                 throw new ArgumentNullException(nameof(aux));
             }
-
             int [] valores = aux;
-            for (int a = 1; a < 99; a++)
+            for (int a = 0; a < 100; a++)
             {
-                for (int b = 1; b < 99; b++)
+                for (int b = 0; b < 100; b++)    
                 {
-                    valores[1] = a;
-                    valores[2] = b;
-                    //Console.WriteLine("\n------------------------\nAntes da execução:");
-                    //for (int i = 0; i < valores.Length; i++)
-                    //{
-                    //    Console.WriteLine(valores[i]);
-                    //}
-                    int [] cap = andor(valores);
-                    //Console.WriteLine("\n------------------------\nDepois da execução:");
-                    //for (int i = 0; i < valores.Length; i++)
-                    //{
-                    //    Console.WriteLine(valores[i]);
-                    //}
-                    if (valores[0] == 19690720)
+                    Console.WriteLine("\n***** Iteração: " + (a+b) + " *****\n");
+                    int [] cap = andor(in valores,a,b);
+                    if (cap[0] == 19690720)
                     {
                         Console.WriteLine("a: " + a + " \nb:" + b);
                         a = 100;
@@ -169,7 +161,14 @@ namespace Gravidade
             string [] entrada = leitor("input.txt");
             int[] aux = vStringtovInt(entrada);
             //andor(aux);
-            testandor(aux);
+            try
+            {
+                testandor(in aux);
+            }
+            catch(ArgumentNullException a)
+            {
+                Console.WriteLine("Parâmetro nulo.");
+            }
             //for (int i = 0; i < aux.Length; i++)
             //{
             //    Console.WriteLine(aux[i]);
