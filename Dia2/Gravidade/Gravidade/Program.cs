@@ -94,12 +94,12 @@ namespace Gravidade
                     j = valores[i + 3];
                     k = valores[i + 1];
                     m = valores[i + 2];
-                    valores[j] = valores[i + 1] - valores[i + 2];
+                    valores[j] = valores[k] * valores[m];
                 }
                 else if(valores[i] == 99)
                 {
                     Console.WriteLine("PAREI!");
-                    Console.WriteLine("O valor na posição zero foi esse aqui ó: " + valores[0]);
+                    Console.WriteLine("O valor na posição zero foi esse aqaui ó: " + valores[0]);
                     return;
                 }
                 else
@@ -113,7 +113,12 @@ namespace Gravidade
         {
             //escritor("input.txt");
             string [] entrada = leitor("input.txt");
-            andor(vStringtovInt(entrada));
+            int[] aux = vStringtovInt(entrada);
+            andor(aux);
+            //for (int i = 0; i < aux.Length; i++)
+            //{
+            //    Console.WriteLine(aux[i]);
+            //}
             Console.ReadLine();
         }
     }
