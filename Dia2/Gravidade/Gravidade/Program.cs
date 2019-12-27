@@ -75,8 +75,9 @@ namespace Gravidade
             }
             return saida;
         }
-        public static int[] andor(in int [] valores, int x, int y)
+        public static int[] andor(string [] entrada, int x, int y)
         {
+            int[] valores = vStringtovInt(entrada);
             valores[1] = x;
             valores[2] = y;
             for (int i = 0; i < valores.Length; i+=4)
@@ -129,27 +130,18 @@ namespace Gravidade
             return valores;
         }
 
-        public static void testandor(in int [] aux)
+        public static void testandor(string [] x)
         {
-            if (aux == null)
-            {
-                throw new ArgumentNullException(nameof(aux));
-            }
-            int [] valores = aux;
             for (int a = 0; a < 100; a++)
             {
                 for (int b = 0; b < 100; b++)    
                 {
                     Console.WriteLine("\n***** Iteração: " + (a+b) + " *****\n");
-                    int [] cap = andor(in valores,a,b);
-                    if (cap[0] == 19690720)
+                    int [] aux = andor(x, a, b);
+                    if(aux[0] == 19690720)
                     {
-                        Console.WriteLine("a: " + a + " \nb:" + b);
-                        a = 100;
-                    }
-                    else
-                    {
-                        valores = aux;
+                        Console.WriteLine("Pronto! " + a + " " + b);
+                        return;
                     }
                 }
             }
@@ -161,14 +153,8 @@ namespace Gravidade
             string [] entrada = leitor("input.txt");
             int[] aux = vStringtovInt(entrada);
             //andor(aux);
-            try
-            {
-                testandor(in aux);
-            }
-            catch(ArgumentNullException a)
-            {
-                Console.WriteLine("Parâmetro nulo.");
-            }
+            testandor(entrada);
+            
             //for (int i = 0; i < aux.Length; i++)
             //{
             //    Console.WriteLine(aux[i]);
