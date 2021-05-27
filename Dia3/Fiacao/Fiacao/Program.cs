@@ -174,6 +174,7 @@ namespace Fiacao
         static void Main(string[] args)
         {
             Console.WriteLine("Startei");
+            Console.WriteLine("Comecei mesmo, vai fazer o que?");
             string [] fio1 = leitor("input.txt");
             string [] fio2 = leitorsecundario("input.txt");
             for (int i = 0; i < fio1.Length; i++)
@@ -184,7 +185,6 @@ namespace Fiacao
             List<int> fio_2 = new List<int>(direcao(fio2));
             List<int> inter = new List<int>(colisao(fio_1, fio_2));
             Console.WriteLine("Até ai nada bem, mas se...");
-            Console.Write("EU TENTAR FAZER ISSO AQUI, TU VAI RECONHECER????????????");
             Console.ReadLine();
         }
     }
