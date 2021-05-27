@@ -25,6 +25,7 @@ namespace Combustivel
             catch (IOException e)
             {
                 Console.WriteLine("Não consegui abrir o arquivo");
+                Console.WriteLine("Lascou, vai ter que startar tudo de novo");
             }
             List<String> linhas = new List<String>();
             String aux = leitor_var.ReadLine();
@@ -89,6 +90,7 @@ namespace Combustivel
             Console.WriteLine("A soma final é: " + somafinal);
             string mensagem = "A soma final é: " + somafinal;
             Console.WriteLine("Agora vo finalizar tudo, beijo");
+            Console.ReadLine();
             escritor(mensagem);
             Console.ReadLine();
         }
