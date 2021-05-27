@@ -183,7 +183,7 @@ namespace Fiacao
             List<int> fio_1 = new List<int>(direcao(fio1));
             List<int> fio_2 = new List<int>(direcao(fio2));
             List<int> inter = new List<int>(colisao(fio_1, fio_2));
-
+            Console.WriteLine("Morra morra imediatamente");
             Console.ReadLine();
         }
     }
