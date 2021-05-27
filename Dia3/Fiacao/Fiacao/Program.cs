@@ -175,6 +175,7 @@ namespace Fiacao
         {
             Console.WriteLine("Startei");
             Console.WriteLine("Comecei mesmo, vai fazer o que?");
+            Console.WriteLine("Não aguento mais testar");
             string [] fio1 = leitor("input.txt");
             string [] fio2 = leitorsecundario("input.txt");
             for (int i = 0; i < fio1.Length; i++)
