@@ -88,6 +88,7 @@ namespace Combustivel
             }
             Console.WriteLine("A soma final é: " + somafinal);
             string mensagem = "A soma final é: " + somafinal;
+            Console.WriteLine("Agora vo finalizar tudo, beijo");
             escritor(mensagem);
             Console.ReadLine();
         }
